@@ -1,0 +1,133 @@
+{
+  "build": "090b01ef",
+  "generated": "2026-08-17T07:35:16Z",
+  "bounds": [
+    [
+      -45.0,
+      112.0
+    ],
+    [
+      -9.0,
+      155.0
+    ]
+  ],
+  "size_px": [
+    4300,
+    4146
+  ],
+  "palette": {
+    "colour": "#F4841F",
+    "steps": 16,
+    "max_alpha": 0.75,
+    "depth_for_step": [
+      0,
+      0.42,
+      0.88,
+      1.37,
+      1.91,
+      2.49,
+      3.14,
+      3.87,
+      4.69,
+      5.64,
+      6.76,
+      8.13,
+      9.9,
+      12.4,
+      16.66,
+      16.66
+    ]
+  },
+  "legend": [
+    {
+      "step": 3,
+      "label": "1+ connector density"
+    },
+    {
+      "step": 5,
+      "label": "2+ connectors density"
+    },
+    {
+      "step": 9,
+      "label": "5+ connectors density"
+    },
+    {
+      "step": 13,
+      "label": "10+ connectors density"
+    },
+    {
+      "step": 15,
+      "label": "20+ connectors density"
+    }
+  ],
+  "vehicle": {
+    "battery_kwh": 60,
+    "efficiency_wh_per_km": 170,
+    "typical_range_km": 317.6
+  },
+  "charge_minutes": {
+    "values": [
+      15,
+      30,
+      60
+    ],
+    "default": 30
+  },
+  "basemap": {
+    "default": "light",
+    "saturation_percent": 40,
+    "layers": [
+      {
+        "id": "light",
+        "label": "Light",
+        "url": "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        "attribution": "&copy; OpenStreetMap contributors &copy; CARTO",
+        "max_zoom": 19
+      }
+    ]
+  },
+  "copy": {
+    "title": "Visualising the Chargefox network coverage.",
+    "intro_html": "<p>The purpose of this map is to visualise the network coverage of the Chargefox\nnetwork across greater Australia using isochrone mapping.</p>\n<p>Isochrone mapping is a way of visualising <code>distance x time</code> between\nmultiple points.</p>\n<p>Each shaded area illustrates the distance a Chargefox user can travel on public\nroads using the Chargefox network. This includes all direct hosted and roaming\nstations.</p>\n<p>The chosen vehicle specs are a rounded mean of the most populous EV models in\nAustralia (Tesla Model 3, Tesla Model Y, BYD Atto 3, MG 4) with ~60&nbsp;kWh battery\nwith typical highway efficiency (~170&nbsp;Wh/km).</p>\n<p>Darker shading means higher connector density available in that area.</p>\n",
+    "explainer_title": "How this map works",
+    "model_explainer_html": "<p>The methodology used in this model is conservative charging behaviour seen in\nrural long distance driving, as the primary purpose of this visualisation is to\nillustrate coverage over vast areas with lower connector density.</p>\n<p>The formula applied to each connector is\n<code>power_delivery_kW \u00d7 charge_duration</code>, applied to the vehicle model\n<code>(max_soc \u2212 reserve_soc) \u00d7 battery_size / highway_efficiency</code>.</p>\n<p>A charge stop will calculate up to the set charge time or battery capacity,\nwhichever comes first.</p>\n<p class=\"params\"><strong>Connector parameters:</strong><br>\n<code>power_kW</code> = rated power delivery of a connector<br>\n<code>charge_duration</code> = 15, 30 or 60 minutes</p>\n<p class=\"params\"><strong>Vehicle parameters:</strong><br>\n<code>Max_soc</code> = 100%<br>\n<code>Reserve_soc</code> on arrival = 10%<br>\n<code>Battery_size</code> = 60&nbsp;kWh<br>\n<code>highway_efficiency</code> = 170&nbsp;Wh/km</p>\n<p class=\"params\"><strong>Total distance possible on a full charge:</strong><br>\n<code>0.9 \u00d7 60 / 0.170 = 317.6 km</code></p>\n",
+    "legend_title": "Connector density",
+    "disclaimer_html": "<h2>Disclaimer:</h2>\n<p>This is for illustrative purposes only. EV range can be affected by weather,\nterrain, vehicle spec and driving behaviour.</p>\n",
+    "footer_html": "Data current as of 17 August 2026. Road network: OpenStreetMap via Valhalla."
+  },
+  "layers": {
+    "15": {
+      "bytes": 305164,
+      "file": "layers/5799ac1d/15.webp",
+      "height_px": 4146,
+      "max_depth": 155.0,
+      "sites": 1071,
+      "reach_km": {
+        "p50": 73.5,
+        "max": 317.6
+      }
+    },
+    "30": {
+      "bytes": 322152,
+      "file": "layers/5799ac1d/30.webp",
+      "height_px": 4146,
+      "max_depth": 188.0,
+      "sites": 1071,
+      "reach_km": {
+        "p50": 147.1,
+        "max": 317.6
+      }
+    },
+    "60": {
+      "bytes": 311034,
+      "file": "layers/5799ac1d/60.webp",
+      "height_px": 4146,
+      "max_depth": 221.0,
+      "sites": 1071,
+      "reach_km": {
+        "p50": 294.1,
+        "max": 317.6
+      }
+    }
+  }
+}

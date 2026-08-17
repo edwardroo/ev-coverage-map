@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visualising the Chargefox network coverage.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="layers/5799ac1d/30.webp">
+<script data-goatcounter="https://edwardroo.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<div id="panel-wrap">
+  <div id="panel">
+    <div id="brand">
+      <div class="brand-text">
+        <h1>Visualising the Chargefox network coverage.</h1>
+      </div>
+    </div>
+    <section id="intro"><p>The purpose of this map is to visualise the network coverage of the Chargefox
+network across greater Australia using isochrone mapping.</p>
+<p>Isochrone mapping is a way of visualising <code>distance x time</code> between
+multiple points.</p>
+<p>Each shaded area illustrates the distance a Chargefox user can travel on public
+roads using the Chargefox network. This includes all direct hosted and roaming
+stations.</p>
+<p>The chosen vehicle specs are a rounded mean of the most populous EV models in
+Australia (Tesla Model 3, Tesla Model Y, BYD Atto 3, MG 4) with ~60&nbsp;kWh battery
+with typical highway efficiency (~170&nbsp;Wh/km).</p>
+<p>Darker shading means higher connector density available in that area.</p>
+</section>
+    <section>
+      <h2 id="charge-time-label">Charge time</h2>
+      <input type="range" id="charge-time" min="0" max="2" step="1">
+      <div class="tick-row" id="charge-time-ticks"></div>
+    </section>
+    <section>
+      <h2>Connector density</h2>
+      <ul id="legend-list"></ul>
+    </section>
+    <details>
+      <summary>How this map works</summary>
+      <p>The methodology used in this model is conservative charging behaviour seen in
+rural long distance driving, as the primary purpose of this visualisation is to
+illustrate coverage over vast areas with lower connector density.</p>
+<p>The formula applied to each connector is
+<code>power_delivery_kW × charge_duration</code>, applied to the vehicle model
+<code>(max_soc − reserve_soc) × battery_size / highway_efficiency</code>.</p>
+<p>A charge stop will calculate up to the set charge time or battery capacity,
+whichever comes first.</p>
+<p class="params"><strong>Connector parameters:</strong><br>
+<code>power_kW</code> = rated power delivery of a connector<br>
+<code>charge_duration</code> = 15, 30 or 60 minutes</p>
+<p class="params"><strong>Vehicle parameters:</strong><br>
+<code>Max_soc</code> = 100%<br>
+<code>Reserve_soc</code> on arrival = 10%<br>
+<code>Battery_size</code> = 60&nbsp;kWh<br>
+<code>highway_efficiency</code> = 170&nbsp;Wh/km</p>
+<p class="params"><strong>Total distance possible on a full charge:</strong><br>
+<code>0.9 × 60 / 0.170 = 317.6 km</code></p>
+
+    </details>
+    <div id="disclaimer"><h2>Disclaimer:</h2>
+<p>This is for illustrative purposes only. EV range can be affected by weather,
+terrain, vehicle spec and driving behaviour.</p>
+</div>
+    <p id="footer">Data current as of 17 August 2026. Road network: OpenStreetMap via Valhalla.</p>
+  </div>
+  <button id="panel-tab" aria-controls="panel" aria-expanded="true" aria-label="Collapse panel">&lsaquo;</button>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
